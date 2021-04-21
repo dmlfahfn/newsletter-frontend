@@ -1,6 +1,8 @@
 const firstPage = document.getElementById("first-page");
 const adminPage = document.getElementById("admin-page");
 const header = document.getElementsByTagName("header");
+let saveBtn = document.getElementById("saveBtn");
+let logInBtn = document.getElementById("logInBtn");
 
 fetch("http://localhost:3000/users")
 .then(res => res.json())
@@ -17,11 +19,8 @@ function showUsers(users) {
     }
 };
 
-let saveBtn = document.getElementById("saveBtn");
-let logInBtn = document.getElementById("logInBtn");
-
 saveBtn.addEventListener("click", ()=> {
-    let newUser = {username: document.getElementById("newUsername").value, password: document.getElementById("newPassword").value };
+    let newUser = {username: document.getElementById("newUsername").value, password: document.getElementById("newPassword").value, subscription: false };
     console.log(newUser);
 
     fetch("http://localhost:3000/users/new", {
@@ -32,6 +31,25 @@ saveBtn.addEventListener("click", ()=> {
         body: JSON.stringify(newUser)
     })
     .then(res => res.json())
-    .then(data => {console.log(data)
+    .then(data => {
+        console.log(data)
     });
+});
+
+logInBtn.addEventListener("click", () => {
+
+    let user = {username: document.getElementById("username").value, password: document.getElementById("password").value}
+
+    fetch("http://localhost:3000/users/login", {
+        method: "post",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(user)
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+    });
+
 });
