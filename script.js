@@ -10,21 +10,28 @@ fetch("http://localhost:3000/users")
 });
 
 function showUsers(users) {
-     firstPage.insertAdjacentHTML("beforeend", `<form action="" id="register">
-                                                 User Name <input type="text" >
-                                                 Password <input type="password"> 
-                                                 <button>Register</button></form>
-                                                 <form action="" id="member">
-                                                 User Name <input type="text" >
-                                                 Password <input type="password"> 
-                                                 <button>Log In</button></form>`);
-
-    firstPage.insertAdjacentHTML("beforeend","<div><h2>Users in the system</h2></div>");
+    firstPage.insertAdjacentHTML("beforeend","<div><h2>Our Users</h2></div>");
     
     for (user in users){
         firstPage.insertAdjacentHTML("beforeend", "<div>" + users[user].username + "</div>")
     }
 };
 
+let saveBtn = document.getElementById("saveBtn");
+let logInBtn = document.getElementById("logInBtn");
 
-showUsers();
+saveBtn.addEventListener("click", ()=> {
+    let newUser = {username: document.getElementById("newUsername").value, password: document.getElementById("newPassword").value };
+    console.log(newUser);
+
+    fetch("http://localhost:3000/users/new", {
+        method: "post",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newUser)
+    })
+    .then(res => res.json())
+    .then(data => {console.log(data)
+    });
+});
