@@ -47,6 +47,9 @@ logInBtn.addEventListener("click", () => {
     })
     .then(res => res.json())
     .then(data => {
-        console.log(data)//.username, data.subscription
+        console.log(data.username, data.subscription)
+
+        firstPage.innerHTML = "";
+        firstPage.insertAdjacentHTML("beforeend", "<div> <h2> Welcome" +data.username+ "! </h2></div>" + "<div> <h4> Your subscription status: " +data.subscription+ "</h4></div>")
     });
 });
