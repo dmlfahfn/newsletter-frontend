@@ -4,6 +4,12 @@ const header = document.getElementsByTagName("header");
 let saveBtn = document.getElementById("saveBtn");
 let logInBtn = document.getElementById("logInBtn");
 
+if (localStorage.getItem("userId")){
+} else {
+    let userId = [];
+    localStorage.setItem("userId", JSON.stringify(userId));
+};
+
 // showUsers();
 
 // function showUsers() {
@@ -48,8 +54,22 @@ logInBtn.addEventListener("click", () => {
     .then(res => res.json())
     .then(data => {
         console.log(data.username, data.subscription)
-
-        firstPage.innerHTML = "";
-        firstPage.insertAdjacentHTML("beforeend", "<div> <h2> Welcome" +data.username+ "! </h2></div>" + "<div> <h4> Your subscription status: " +data.subscription+ "</h4></div>")
+        let storedUserId = JSON.parse(localStorage.getItem("userId"));
+        //storedUserId.push(data)
+        showUser(data);
     });
 });
+
+function showUser(data) {
+    firstPage.innerHTML = "";
+    firstPage.insertAdjacentHTML("beforeend", `<div> <h2> Welcome ${data.username} ! </h2></div>  
+                                <div> <h4> Your subscription status:  ${data.subscription? `Subscribed
+                                <form>
+                                <input type="checkbox" id="accept" checked> Accept
+                                <input type="button" id="btn" value="Submit">
+                                </form>} </h4></div>`:`Subscribe     
+                                <form>
+                                <input type="checkbox" id="accept" checked> Accept
+                                <input type="button" id="btn" value="Submit">
+                                </form>`}`);
+};
