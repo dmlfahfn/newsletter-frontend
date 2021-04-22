@@ -22,16 +22,16 @@ footer {
     line-height: 30px;
 }
 
-#register {
+#first-page{
     position: absolute;
-    left: 35%;
-    top: 30%;
+}
+
+#register {
+    position: relative;
 }
 
 #member {
-    position: absolute;
-    left: 35%;
-    top: 40%;
+    position: relative;
 }
 
 #first-page {
