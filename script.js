@@ -54,8 +54,10 @@ logInBtn.addEventListener("click", () => {
     .then(res => res.json())
     .then(data => {
         console.log(data.username, data.subscription)
-        let storedUserId = JSON.parse(localStorage.getItem("userId"));
-        //storedUserId.push(data)
+        // let storedUserId = JSON.parse(localStorage.getItem("userId"));
+        // storedUserId.push(data);
+        // localStorage.setItem("userId", JSON.stringify(storedUserId));
+
         showUser(data);
     });
 });
@@ -72,4 +74,8 @@ function showUser(data) {
                                 <input type="checkbox" id="accept" checked> Accept
                                 <input type="button" id="btn" value="Submit">
                                 </form>`}`);
+
+
+    let userId = data.id;
+    localStorage.setItem("userId", JSON.stringify(userId));
 };
