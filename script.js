@@ -23,8 +23,9 @@ if (localStorage.getItem("userId")){
 //     });
 // };
 
-saveBtn.addEventListener("click", ()=> {
-    let newUser = {username: document.getElementById("newUsername").value, password: document.getElementById("newPassword").value, subscription: false };
+saveBtn.addEventListener("click", (e)=> {
+    e.preventDefault();
+    let newUser = {username: document.getElementById("newUsername").value, email: document.getElementById("email").value, password: document.getElementById("newPassword").value, subscription: false };
     console.log(newUser);
 
     fetch("http://localhost:3000/users/new", {
@@ -40,8 +41,8 @@ saveBtn.addEventListener("click", ()=> {
     });
 });
 
-logInBtn.addEventListener("click", () => {
-
+logInBtn.addEventListener("click", (e) => {
+    e.preventDefault();
     let user = {username: document.getElementById("username").value, password: document.getElementById("password").value}
 
     fetch("http://localhost:3000/users/login", {
