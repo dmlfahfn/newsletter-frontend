@@ -25,8 +25,16 @@ if (localStorage.getItem("userId")){
 
 saveBtn.addEventListener("click", (e)=> {
     e.preventDefault();
-    let newUser = {username: document.getElementById("newUsername").value, email: document.getElementById("email").value, password: document.getElementById("newPassword").value, subscription: false };
-    console.log(newUser);
+    // if (
+    //     document.getElementById("newUsername").value !== "" &&
+    //     document.getElementById("email").value !== "" &&
+    //     document.getElementById("newPassword").value !== ""
+    //     ){
+        let newUser = {username: document.getElementById("newUsername").value, email: document.getElementById("email").value, password: document.getElementById("newPassword").value, subscription: document.getElementById("checkbox").checked};
+        
+        console.log(newUser);
+    //     return newUser;
+    // }
 
     fetch("http://localhost:3000/users/new", {
         method: "post",
@@ -68,7 +76,7 @@ function showUser(data) {
     firstPage.insertAdjacentHTML("beforeend", `<div> <h2> Welcome ${data.username} ! </h2></div>  
                                 <div> <h4> Your subscription status:  ${data.subscription? `Subscribed
                                 <form>
-                                <input type="checkbox" id="accept" checked> Accept
+                                <input type="checkbox" id="checkbox" name="checkbox" /> Accept
                                 <input type="button" id="btn" value="Submit">
                                 </form>} </h4></div>`:`Subscribe     
                                 <form>
