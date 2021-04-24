@@ -26,7 +26,7 @@ saveBtn.addEventListener("click", (e)=> {
         return;
     };
 
-    fetch("http://localhost:3000/users/new", {
+    fetch("https://newsletterswe.herokuapp.com/users/new", {
         method: "post",
         headers: {
             "Content-Type": "application/json"
@@ -43,7 +43,7 @@ logInBtn.addEventListener("click", (e) => {
     e.preventDefault();
     user = {username: document.getElementById("username").value, password: document.getElementById("password").value}
 
-    fetch("http://localhost:3000/users/login", {
+    fetch("https://newsletterswe.herokuapp.com/users/login", {
         method: "post",
         headers: {
             "Content-Type": "application/json"
@@ -87,7 +87,7 @@ function showUser(data) {
 const changeStatus = () => {
 
     user.subscription = !user.subscription;
-    fetch("http://localhost:3000/users/change", {
+    fetch("https://newsletterswe.herokuapp.com/users/change", {
         method: "post",
         headers: {
             "Content-Type": "application/json"
